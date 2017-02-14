@@ -11,6 +11,9 @@
 #import "UIFont+SuitFont.h"
 #import "UILabel+LLFont.h"
 #import "UIView+Extension.h"
+#import "MGSwipeButton.h"
+#import "MGSwipeTableCell.h"
+
 
 #ifdef __OBJC__
 

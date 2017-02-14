@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class TTNoteModel;
-@interface TTListCell : UITableViewCell
+@interface TTListCell : MGSwipeTableCell
 
 @property (nonatomic, strong) TTNoteModel *noteModel;
 
+//删除
+@property (nonatomic, copy) void (^deleteBlock)();
+//置顶
+@property (nonatomic, copy) void (^movetopBlock)();
 @end

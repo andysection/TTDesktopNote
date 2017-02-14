@@ -71,6 +71,30 @@ static NSString *ListCellId = @"ListCellId";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TTListCell *cell = [tableView dequeueReusableCellWithIdentifier:ListCellId forIndexPath:indexPath];
     cell.noteModel = self.noteModel;
+    //滑动右侧按钮设置
+    __weak typeof(self) WeakSelf = self;
+    //需要判断是否置顶?????????????????
+    MGSwipeButton *movetopBtn = [MGSwipeButton buttonWithTitle:@""
+                                                         icon:[UIImage imageNamed:@"cell_top"]
+                                              backgroundColor:HexRGBAlpha(0x2e3235, 1)
+                                                     callback:^BOOL(MGSwipeTableCell * _Nonnull cell) {
+                                                         [WeakSelf moveNoteToTop:indexPath];
+                                                         return YES;
+                                                     }];
+    movetopBtn.buttonWidth = 60 * Screen_WScale;
+    
+    MGSwipeButton *deleteBtn = [MGSwipeButton buttonWithTitle:@""
+                                                          icon:[UIImage imageNamed:@"cell_delete"]
+                                               backgroundColor:MainColor
+                                                      callback:^BOOL(MGSwipeTableCell * _Nonnull cell) {
+                                                          [WeakSelf deleteNote:indexPath];
+                                                          return YES;
+                                                      }];
+    deleteBtn.buttonWidth = 60 * Screen_WScale;
+    
+    cell.rightButtons = @[deleteBtn,
+                          movetopBtn];
+    cell.rightSwipeSettings.transition = MGSwipeTransitionBorder;
     return cell;
 }
 
@@ -80,5 +104,19 @@ static NSString *ListCellId = @"ListCellId";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
+}
+
+# pragma mark - 侧滑按钮功能
+//置顶
+- (void)moveNoteToTop:(NSIndexPath *)indexPath{
+
+}
+//取消置顶
+- (void)cancelMoveNoteToTop:(NSIndexPath *)indexPath{
+    
+}
+//移至废纸篓
+- (void)deleteNote:(NSIndexPath *)indexPath{
+    
 }
 @end

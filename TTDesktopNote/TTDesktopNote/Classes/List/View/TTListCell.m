@@ -8,8 +8,9 @@
 
 #import "TTListCell.h"
 #import "TTNoteModel.h"
+#import "MGSwipeButton.h"
 
-static CGFloat headerForTime = 15;
+static CGFloat headerForTime = 12;
 static CGFloat marginVertical = 15;
 static CGFloat headerForContent = 52;
 static CGFloat topForContent = 50;
@@ -77,6 +78,7 @@ static CGFloat topForContent = 50;
     
     _selectedSign.hidden = YES;
     
+    
 }
 
 - (void)layoutSubviews{
@@ -105,6 +107,19 @@ static CGFloat topForContent = 50;
     [_contentLabel sizeToFit];
 
 }
+
+- (void)deleteClick{
+    if (!self.deleteBlock) {
+        self.deleteBlock();
+    }
+}
+
+- (void)movetopClick{
+    if (!self.movetopBlock) {
+        self.movetopBlock();
+    }
+}
+
 - (void)setNoteModel:(TTNoteModel *)noteModel{
     _noteModel = noteModel;
     
@@ -112,13 +127,6 @@ static CGFloat topForContent = 50;
     _timeLabel.text = _noteModel.time;
     _contentLabel.text = _noteModel.content;
     
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-//    self.contentView.backgroundColor = selected? [UIColor whiteColor] : BackgroundColor;
-//    _selectedSign.hidden = selected;
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{

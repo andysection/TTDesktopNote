@@ -20,6 +20,9 @@
 		84FB763F1E52BC2B00A51F41 /* UILabel+LLFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB763E1E52BC2B00A51F41 /* UILabel+LLFont.m */; };
 		84FB76421E52BF2F00A51F41 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB76411E52BF2F00A51F41 /* UIView+Extension.m */; };
 		84FB76451E52E38000A51F41 /* TTNoteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB76441E52E38000A51F41 /* TTNoteModel.m */; };
+		84FB764C1E52F67D00A51F41 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84FB76471E52F67C00A51F41 /* Info.plist */; };
+		84FB764D1E52F67D00A51F41 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB76491E52F67D00A51F41 /* MGSwipeButton.m */; };
+		84FB764E1E52F67D00A51F41 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB764B1E52F67D00A51F41 /* MGSwipeTableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,11 @@
 		84FB76411E52BF2F00A51F41 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		84FB76431E52E38000A51F41 /* TTNoteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNoteModel.h; sourceTree = "<group>"; };
 		84FB76441E52E38000A51F41 /* TTNoteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNoteModel.m; sourceTree = "<group>"; };
+		84FB76471E52F67C00A51F41 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84FB76481E52F67C00A51F41 /* MGSwipeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeButton.h; sourceTree = "<group>"; };
+		84FB76491E52F67D00A51F41 /* MGSwipeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeButton.m; sourceTree = "<group>"; };
+		84FB764A1E52F67D00A51F41 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCell.h; sourceTree = "<group>"; };
+		84FB764B1E52F67D00A51F41 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSwipeTableCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +279,7 @@
 		84FB76251E52B01000A51F41 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				84FB76461E52F67C00A51F41 /* MGSwipeTableCell */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -280,6 +289,18 @@
 			children = (
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		84FB76461E52F67C00A51F41 /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				84FB76471E52F67C00A51F41 /* Info.plist */,
+				84FB76481E52F67C00A51F41 /* MGSwipeButton.h */,
+				84FB76491E52F67D00A51F41 /* MGSwipeButton.m */,
+				84FB764A1E52F67D00A51F41 /* MGSwipeTableCell.h */,
+				84FB764B1E52F67D00A51F41 /* MGSwipeTableCell.m */,
+			);
+			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FB764C1E52F67D00A51F41 /* Info.plist in Resources */,
 				84FB76081E52A93900A51F41 /* LaunchScreen.storyboard in Resources */,
 				84FB76051E52A93900A51F41 /* Assets.xcassets in Resources */,
 				84FB76301E52B15500A51F41 /* Info.plist in Resources */,
@@ -355,7 +377,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FB76421E52BF2F00A51F41 /* UIView+Extension.m in Sources */,
+				84FB764E1E52F67D00A51F41 /* MGSwipeTableCell.m in Sources */,
 				84FB76451E52E38000A51F41 /* TTNoteModel.m in Sources */,
+				84FB764D1E52F67D00A51F41 /* MGSwipeButton.m in Sources */,
 				84FB76281E52B01000A51F41 /* AppDelegate.m in Sources */,
 				84FB763C1E52B90900A51F41 /* TTListCell.m in Sources */,
 				84FB76391E52B77000A51F41 /* TTListController.m in Sources */,
