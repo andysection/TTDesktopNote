@@ -1,0 +1,44 @@
+//
+//  PrefixHeader.pch
+//  TTDesktopNote
+//
+//  Created by admin on 17/2/14.
+//  Copyright © 2017年 admin. All rights reserved.
+//
+
+
+#import "UIImage+color.h"
+#import "UIFont+SuitFont.h"
+#import "UILabel+LLFont.h"
+#import "UIView+Extension.h"
+
+#ifdef __OBJC__
+
+//颜色
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+#define HexRGBAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
+
+#define TitleColor HexRGBAlpha(0x333333, 1)
+#define ContentColor HexRGBAlpha(0xa0a0a0, 1)
+#define BackgroundColor HexRGBAlpha(0xfbfbfb, 1)
+#define MainColor HexRGBAlpha(0xdd4c4f, 1)
+#define SeparatorColor HexRGBAlpha(0xdedede, 1)
+//屏幕大小
+#define TTScreenSize [UIScreen mainScreen].bounds.size
+#define Iphone6_Width 375.f
+#define Iphone6_Height 667.f
+#define Screen_WScale TTScreenSize.width/Iphone6_Width
+#define Screen_HScale TTScreenSize.height/Iphone6_Height
+
+//log
+#ifdef DEBUG
+#define DLog(format , ...) NSLog((@"方法:%s\n,行号:%d\n" format), __FUNCTION__, __LINE__,  ##__VA_ARGS__)
+#else
+#define DLog(...)
+#endif
+
+
+
+
+#endif
+
