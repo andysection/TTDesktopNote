@@ -9,6 +9,7 @@
 #import "TTListController.h"
 #import "TTListCell.h"
 #import "TTNoteModel.h"
+#import "TTNotFindView.h"
 
 static NSString *ListCellId = @"ListCellId";
 
@@ -19,6 +20,12 @@ static NSString *ListCellId = @"ListCellId";
 @property (nonatomic, assign) BOOL isSearchMode;
 
 @property (nonatomic, strong) UISearchBar *ListSearchBar;
+
+@property (nonatomic, strong) UIView *maskView;
+
+@property (nonatomic, strong) TTNotFindView *notFoundView;
+
+@property (nonatomic, weak) UIButton *addNoteBtn;
 @end
 
 @implementation TTListController{
@@ -63,6 +70,7 @@ static NSString *ListCellId = @"ListCellId";
     [btn sizeToFit];
     btn.frame = CGRectMake(300 * Screen_WScale, 530 * Screen_HScale, 60 * Screen_WScale, 60 * Screen_WScale);
     [self.view addSubview:btn];
+    self.addNoteBtn = btn;
 }
 
 -  (void)setupNav{
@@ -80,11 +88,11 @@ static NSString *ListCellId = @"ListCellId";
     self.navigationItem.titleView = bg;
     
     //导航栏 - 左侧
-    UIView *leftbg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIView *leftbg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     leftbg.clipsToBounds = YES;
     UIButton *leftBtn = [UIButton new];
     [leftBtn setImage:[UIImage imageNamed:@"nav_menu"] forState:UIControlStateNormal];
-    [leftBtn sizeToFit];
+    leftBtn.frame = CGRectMake(0, 0, 40, 40);
     [leftbg addSubview:leftBtn];
     leftBtn.center = leftbg.center;
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftbg];
@@ -92,19 +100,17 @@ static NSString *ListCellId = @"ListCellId";
     _leftNavBtn = leftBtn;
 
     //导航栏 - 右侧
-    UIView *rightbg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIView *rightbg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     rightbg.clipsToBounds = YES;
     UIButton *rightBtn = [UIButton new];
     [rightBtn setImage:[UIImage imageNamed:@"nav_search"] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(navSearchAnimationStart) forControlEvents:UIControlEventTouchUpInside];
-    [rightBtn sizeToFit];
+    rightBtn.frame = CGRectMake(0, 0, 40, 40);
     [rightbg addSubview:rightBtn];
     rightBtn.center = rightbg.center;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightbg];
     self.navigationItem.rightBarButtonItem = rightItem;
     _rightNavBtn = rightBtn;
-    
-    
 }
 
 - (void)addNote{
@@ -117,18 +123,23 @@ static NSString *ListCellId = @"ListCellId";
     int k = self.isSearchMode ? 1 : -1;
     //非搜索模式 隐藏
     if (!_isSearchMode) {
-        [self.ListSearchBar resignFirstResponder];
         [self.ListSearchBar removeFromSuperview];
+    } else{
+        [[UIApplication sharedApplication].keyWindow addSubview:self.ListSearchBar];
+        [self.ListSearchBar becomeFirstResponder];
     }
-    [UIView animateWithDuration:0.25 animations:^{
-        _titleLabel.y += 35 * Screen_HScale * k;
-        _leftNavBtn.x -= 35 * Screen_WScale * k;
-        _rightNavBtn.x += 35 * Screen_WScale * k;
+    [UIView animateWithDuration:.25 animations:^{
+        _titleLabel.y += 45 * Screen_HScale * k;
+        _leftNavBtn.x -= 45 * Screen_WScale * k;
+        _rightNavBtn.x += 45 * Screen_WScale * k;
+        self.ListSearchBar.alpha = self.isSearchMode? 1 : 0;
+        self.maskView.alpha = self.isSearchMode? 1 : 0;
+        self.addNoteBtn.y -= 100 * Screen_HScale * k;
     } completion:^(BOOL finished) {
         //如果为隐藏模式 那么现实
         if (self.isSearchMode) {
-            [[UIApplication sharedApplication].keyWindow addSubview:self.ListSearchBar];
-            [self.ListSearchBar becomeFirstResponder];
+        }else{
+            [self.maskView removeFromSuperview];
         }
     }];
 }
@@ -177,11 +188,24 @@ static NSString *ListCellId = @"ListCellId";
 }
 # pragma mark - UISearchBarDelegate
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    self.ListSearchBar.text = @"";
     [self navSearchAnimationStart];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     NSLog(@"%@", searchText);
+    if (searchText.length == 0) {
+        [self.view addSubview:self.maskView];
+        [self.notFoundView removeFromSuperview];
+    } else {
+        //进行搜索
+        [self.maskView removeFromSuperview];
+        [self.view addSubview:self.notFoundView];
+    }
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [self.view addSubview:self.maskView];
 }
 
 
@@ -200,6 +224,7 @@ static NSString *ListCellId = @"ListCellId";
 }
 
 #pragma mark - 懒加载
+//搜索框
 - (UISearchBar *)ListSearchBar{
     if (!_ListSearchBar) {
         _ListSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 20, TTScreenSize.width, 44)];
@@ -213,7 +238,31 @@ static NSString *ListCellId = @"ListCellId";
         UITextField *searchField=[_ListSearchBar valueForKey:@"_searchField"];
         searchField.backgroundColor = HexRGBAlpha(0xececec, 1);
         searchField.textColor = TitleColor;
+        _ListSearchBar.alpha = 0;
     }
     return _ListSearchBar;
+}
+//蒙版
+- (UIView *)maskView{
+    if (!_maskView) {
+        _maskView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _maskView.backgroundColor = HexRGBAlpha(0x333333, 0.3);
+        UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maskViewClick)];
+        singleTapGestureRecognizer.numberOfTapsRequired = 1;
+        [_maskView addGestureRecognizer:singleTapGestureRecognizer];
+        _maskView.alpha = 0;
+    }
+    return _maskView;
+}
+
+- (void)maskViewClick{
+    [self navSearchAnimationStart];
+}
+
+- (TTNotFindView *)notFoundView{
+    if (!_notFoundView) {
+        _notFoundView = [[TTNotFindView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    }
+    return _notFoundView;
 }
 @end

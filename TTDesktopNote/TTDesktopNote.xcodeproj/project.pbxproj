@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84CA59C71E543DE40013C824 /* TTNotFindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA59C61E543DE40013C824 /* TTNotFindView.m */; };
 		84FB75FA1E52A93900A51F41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB75F91E52A93900A51F41 /* main.m */; };
 		84FB76051E52A93900A51F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FB76041E52A93900A51F41 /* Assets.xcassets */; };
 		84FB76081E52A93900A51F41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FB76061E52A93900A51F41 /* LaunchScreen.storyboard */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84CA59C51E543DE40013C824 /* TTNotFindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNotFindView.h; sourceTree = "<group>"; };
+		84CA59C61E543DE40013C824 /* TTNotFindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNotFindView.m; sourceTree = "<group>"; };
 		84FB75F51E52A93900A51F41 /* TTDesktopNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTDesktopNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FB75F91E52A93900A51F41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84FB76041E52A93900A51F41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 			children = (
 				84FB763A1E52B90900A51F41 /* TTListCell.h */,
 				84FB763B1E52B90900A51F41 /* TTListCell.m */,
+				84CA59C51E543DE40013C824 /* TTNotFindView.h */,
+				84CA59C61E543DE40013C824 /* TTNotFindView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				TargetAttributes = {
 					84FB75F41E52A93900A51F41 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 33HU6VDX6P;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -380,6 +386,7 @@
 				84FB764E1E52F67D00A51F41 /* MGSwipeTableCell.m in Sources */,
 				84FB76451E52E38000A51F41 /* TTNoteModel.m in Sources */,
 				84FB764D1E52F67D00A51F41 /* MGSwipeButton.m in Sources */,
+				84CA59C71E543DE40013C824 /* TTNotFindView.m in Sources */,
 				84FB76281E52B01000A51F41 /* AppDelegate.m in Sources */,
 				84FB763C1E52B90900A51F41 /* TTListCell.m in Sources */,
 				84FB76391E52B77000A51F41 /* TTListController.m in Sources */,
@@ -497,6 +504,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 33HU6VDX6P;
 				GCC_PREFIX_HEADER = TTDesktopNote/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = TTDesktopNote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -510,6 +518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 33HU6VDX6P;
 				GCC_PREFIX_HEADER = TTDesktopNote/Other/PrefixHeader.pch;
 				INFOPLIST_FILE = TTDesktopNote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
