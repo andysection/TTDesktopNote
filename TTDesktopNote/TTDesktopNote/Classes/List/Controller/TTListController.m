@@ -12,28 +12,34 @@
 
 static NSString *ListCellId = @"ListCellId";
 
-@interface TTListController ()<UITableViewDelegate, UITableViewDataSource>
+@interface TTListController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (nonatomic, strong) TTNoteModel *noteModel;
 
+@property (nonatomic, assign) BOOL isSearchMode;
+
+@property (nonatomic, strong) UISearchBar *ListSearchBar;
 @end
 
-@implementation TTListController
+@implementation TTListController{
+    UILabel *_titleLabel;
+    UIButton *_leftNavBtn;
+    UIButton *_rightNavBtn;
+}
 
 - (void)viewDidLoad {
+    //初始化 非搜索模式
+    self.isSearchMode = false;
     [super viewDidLoad];
     [self setupUI];
 }
 
 - (void)setupUI{
-    self.title = @"笔记";
-    
+    [self setupNav];
     self.noteModel = [TTNoteModel new];
     self.noteModel.title = @"自定义标题";
     self.noteModel.time = @"3月份";
     self.noteModel.content = @"自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容自定义内容";
-    //导航栏 - 左侧菜单
-    //导航栏 - 右侧搜索
     
     //笔记列表
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -59,8 +65,72 @@ static NSString *ListCellId = @"ListCellId";
     [self.view addSubview:btn];
 }
 
+-  (void)setupNav{
+    //导航栏 - 标题
+    UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 44)];
+    bg.clipsToBounds = YES;
+    UILabel *title = [[UILabel alloc] init];
+    title.text = @"笔记";
+    [title sizeToFit];
+    title.center = bg.center;
+    title.textAlignment = NSTextAlignmentCenter;
+    title.textColor = TitleColor;
+    [bg addSubview:title];
+    _titleLabel = title;
+    self.navigationItem.titleView = bg;
+    
+    //导航栏 - 左侧
+    UIView *leftbg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    leftbg.clipsToBounds = YES;
+    UIButton *leftBtn = [UIButton new];
+    [leftBtn setImage:[UIImage imageNamed:@"nav_menu"] forState:UIControlStateNormal];
+    [leftBtn sizeToFit];
+    [leftbg addSubview:leftBtn];
+    leftBtn.center = leftbg.center;
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftbg];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    _leftNavBtn = leftBtn;
+
+    //导航栏 - 右侧
+    UIView *rightbg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    rightbg.clipsToBounds = YES;
+    UIButton *rightBtn = [UIButton new];
+    [rightBtn setImage:[UIImage imageNamed:@"nav_search"] forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(navSearchAnimationStart) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn sizeToFit];
+    [rightbg addSubview:rightBtn];
+    rightBtn.center = rightbg.center;
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightbg];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    _rightNavBtn = rightBtn;
+    
+    
+}
+
 - (void)addNote{
     NSLog(@"%s", __func__);
+}
+
+- (void)navSearchAnimationStart{
+    self.isSearchMode = !self.isSearchMode;
+    //动画
+    int k = self.isSearchMode ? 1 : -1;
+    //非搜索模式 隐藏
+    if (!_isSearchMode) {
+        [self.ListSearchBar resignFirstResponder];
+        [self.ListSearchBar removeFromSuperview];
+    }
+    [UIView animateWithDuration:0.25 animations:^{
+        _titleLabel.y += 35 * Screen_HScale * k;
+        _leftNavBtn.x -= 35 * Screen_WScale * k;
+        _rightNavBtn.x += 35 * Screen_WScale * k;
+    } completion:^(BOOL finished) {
+        //如果为隐藏模式 那么现实
+        if (self.isSearchMode) {
+            [[UIApplication sharedApplication].keyWindow addSubview:self.ListSearchBar];
+            [self.ListSearchBar becomeFirstResponder];
+        }
+    }];
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
@@ -105,8 +175,17 @@ static NSString *ListCellId = @"ListCellId";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01;
 }
+# pragma mark - UISearchBarDelegate
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [self navSearchAnimationStart];
+}
 
-# pragma mark - 侧滑按钮功能
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    NSLog(@"%@", searchText);
+}
+
+
+# pragma mark - cell侧滑按钮功能
 //置顶
 - (void)moveNoteToTop:(NSIndexPath *)indexPath{
 
@@ -118,5 +197,23 @@ static NSString *ListCellId = @"ListCellId";
 //移至废纸篓
 - (void)deleteNote:(NSIndexPath *)indexPath{
     
+}
+
+#pragma mark - 懒加载
+- (UISearchBar *)ListSearchBar{
+    if (!_ListSearchBar) {
+        _ListSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 20, TTScreenSize.width, 44)];
+        _ListSearchBar.delegate = self;
+        _ListSearchBar.placeholder = @"搜索笔记";
+        _ListSearchBar.showsCancelButton = YES;
+        _ListSearchBar.backgroundImage = [UIImage imageWithColor:BackgroundColor];
+        _ListSearchBar.tintColor = HexRGBAlpha(0x555555, 1);
+        [_ListSearchBar setImage:[UIImage imageNamed:@"search_clear"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+        
+        UITextField *searchField=[_ListSearchBar valueForKey:@"_searchField"];
+        searchField.backgroundColor = HexRGBAlpha(0xececec, 1);
+        searchField.textColor = TitleColor;
+    }
+    return _ListSearchBar;
 }
 @end
