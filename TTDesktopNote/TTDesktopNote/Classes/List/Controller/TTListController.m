@@ -238,6 +238,7 @@ static NSString *ListCellId = @"ListCellId";
         UITextField *searchField=[_ListSearchBar valueForKey:@"_searchField"];
         searchField.backgroundColor = HexRGBAlpha(0xececec, 1);
         searchField.textColor = TitleColor;
+        
         _ListSearchBar.alpha = 0;
     }
     return _ListSearchBar;

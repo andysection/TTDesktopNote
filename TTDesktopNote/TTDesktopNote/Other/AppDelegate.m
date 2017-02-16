@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TTNavigationController.h"
 #import "TTListController.h"
+#import "TTSlideMenuController.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +21,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] init];
     TTListController *vc = [[TTListController alloc] init];
+    TTSlideMenuController *vcslide = [TTSlideMenuController new];
     TTNavigationController *nav = [[TTNavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController = nav;
+    self.window.rootViewController = vcslide;
     [self.window makeKeyAndVisible];
     return YES;
 }
