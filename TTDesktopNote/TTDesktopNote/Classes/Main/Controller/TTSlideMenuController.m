@@ -13,6 +13,7 @@
 #import "TTNavigationController.h"
 
 #define menuViewOffset (100*Screen_WScale)
+#define slideBarWidth (240 * Screen_WScale)
 
 static NSString *MenuCellId = @"MenuCellId";
 @interface TTSlideMenuController ()<UITableViewDelegate, UITableViewDataSource>
@@ -55,7 +56,7 @@ static NSString *MenuCellId = @"MenuCellId";
     [self.menuView addSubview:titleLabel];
     
     //列表
-    UITableView *tableView = [[UITableView alloc] init];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
     //属性
@@ -72,7 +73,7 @@ static NSString *MenuCellId = @"MenuCellId";
     [settingBtn addTarget:self action:@selector(settingBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [settingBtn setBackgroundImage:[UIImage imageNamed:@"btn_setting_bg"] forState:UIControlStateNormal];
     [settingBtn setImage:[UIImage imageNamed:@"btn_setting"] forState:UIControlStateNormal];
-    settingBtn.frame = CGRectMake(160 * Screen_WScale, 530 * Screen_HScale, 62 * Screen_WScale, 62 * Screen_WScale);
+    settingBtn.frame = CGRectMake(160 * Screen_WScale, 594 * Screen_HScale, 62 * Screen_WScale, 62 * Screen_WScale);
     [self.menuView addSubview:settingBtn];
 }
 
@@ -88,6 +89,11 @@ static NSString *MenuCellId = @"MenuCellId";
     TTNavigationController *nav = [[TTNavigationController alloc] initWithRootViewController:vc];
     [self addChildViewController:nav];
     
+    __weak typeof(self) WeakSelf = self;
+    vc.showMenuBlock = ^{
+        [WeakSelf showMenu:(self.menuView.x < 0)];
+    };
+    
     //添加视图
     UIView *v = nav.view;
     v.frame = [UIScreen mainScreen].bounds;
@@ -102,6 +108,26 @@ static NSString *MenuCellId = @"MenuCellId";
 }
 
 /**
+ *判断是否显示菜单栏
+ */
+- (void)showMenu:(BOOL)show{
+    CGAffineTransform ContainerTransform = CGAffineTransformIdentity;
+    CGAffineTransform MenuViewTransform = CGAffineTransformIdentity;
+    if (show) {
+        ContainerTransform = CGAffineTransformMakeTranslation(slideBarWidth, 0);
+        MenuViewTransform = CGAffineTransformMakeTranslation(menuViewOffset, 0);
+        [self addTapGesture];
+    } else {
+        [self removeTapGesture];
+    }
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.containerView.transform = ContainerTransform;
+        self.menuView.transform = MenuViewTransform;
+    }];
+}
+#pragma mark - GestureRecognizer 手势设置
+/**
  *添加手势
  */
 - (void)setupGesture{
@@ -111,7 +137,6 @@ static NSString *MenuCellId = @"MenuCellId";
 
 - (void)addTapGesture{
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
-    
     [self.containerView addGestureRecognizer:tap];
     self.tap = tap;
     self.MainListVC.tableView.userInteractionEnabled = NO;
@@ -120,22 +145,15 @@ static NSString *MenuCellId = @"MenuCellId";
 - (void)removeTapGesture{
     [self.containerView removeGestureRecognizer:self.tap];
     self.MainListVC.tableView.userInteractionEnabled = YES;
-    
 }
 
 - (void)tapGesture:(UITapGestureRecognizer *)recognizer{
-    [UIView animateWithDuration:0.25 animations:^{
-        self.containerView.transform = CGAffineTransformIdentity;
-        self.menuView.transform = CGAffineTransformIdentity;
-    } completion:^(BOOL finished) {
-        [self removeTapGesture];
-    }];
+    [self showMenu:NO];
 }
 
 - (void)panGesture:(UIPanGestureRecognizer *)recognizer{
     //获取增量
     CGPoint t = [recognizer translationInView:self.view];
-    
     //手势复位
     [recognizer setTranslation:CGPointZero inView:self.view];
     
@@ -146,38 +164,17 @@ static NSString *MenuCellId = @"MenuCellId";
             if (self.containerView.x + t.x < 0) {
                 return;
             }
-            
-            //容器移动
-            self.containerView.transform = CGAffineTransformTranslate(self.containerView.transform, t.x, 0);
-            //底部移动
-            CGFloat slideBarWidth = 240 * Screen_WScale;
-            CGFloat menuViewMove = menuViewOffset / slideBarWidth * t.x;
+            //容器移动 到位以后移动比例下降 比例为 list显示部分/屏幕宽度
+            CGFloat containerMove = self.menuView.x < 0 ? t.x : t.x * (TTScreenSize.width - slideBarWidth) / TTScreenSize.width;
+            self.containerView.transform = CGAffineTransformTranslate(self.containerView.transform, containerMove, 0);
+            //底部移动 到位后贴着容器移动 未到位则按比例移动
+            CGFloat menuViewMove = self.menuView.x < 0 ? menuViewOffset / slideBarWidth * containerMove : containerMove;
             self.menuView.transform = CGAffineTransformTranslate(self.menuView.transform, menuViewMove, 0);
             break;
-            
         case UIGestureRecognizerStateFailed:
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:
-        {
-            CGAffineTransform ContainerTransform = CGAffineTransformIdentity;
-            CGAffineTransform MenuViewTransform = CGAffineTransformIdentity;
-            CGFloat slideBarWidth = 240 * Screen_WScale;
-            
-            if (self.containerView.x > slideBarWidth * 0.5) {
-                //超过滑动菜单一般大小的时候 显示 右侧添加单击手势
-                ContainerTransform = CGAffineTransformMakeTranslation(slideBarWidth, 0);
-                MenuViewTransform = CGAffineTransformMakeTranslation(menuViewOffset, 0);
-                [self addTapGesture];
-            } else {
-                //删除点击事件
-                [self removeTapGesture];
-            }
-            
-            [UIView animateWithDuration:0.25 animations:^{
-                self.containerView.transform = ContainerTransform;
-                self.menuView.transform = MenuViewTransform;
-            }];
-        }
+            [self showMenu:(self.containerView.x > slideBarWidth * 0.5)];
             break;
         default:
             break;
@@ -190,7 +187,7 @@ static NSString *MenuCellId = @"MenuCellId";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 30;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -199,8 +196,7 @@ static NSString *MenuCellId = @"MenuCellId";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 240 * Screen_WScale, 75 * Screen_HScale)];
-    UILabel *label = [UILabel createLabelWithText:@"Section" FontSize:14 textColor:HexRGBAlpha(0x505355, 1)];
+    UILabel *label = [UILabel createLabelWithText:@"SECTION" FontSize:14 textColor:HexRGBAlpha(0x505355, 1)];
     label.textAlignment = NSTextAlignmentCenter;
     return label;
 }

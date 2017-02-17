@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84251DFB1E56F72C00EE90ED /* TTSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84251DFA1E56F72C00EE90ED /* TTSettingController.m */; };
+		84251DFE1E56FD1B00EE90ED /* TTSettingTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84251DFD1E56FD1B00EE90ED /* TTSettingTitleCell.m */; };
 		84457E4F1E555FF7000ED103 /* TTSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84457E4E1E555FF7000ED103 /* TTSlideMenuController.m */; };
 		84457E521E558F11000ED103 /* TTMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84457E511E558F11000ED103 /* TTMenuCell.m */; };
 		84457E541E559A53000ED103 /* Microsoft Yahei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84457E531E559A53000ED103 /* Microsoft Yahei.ttf */; };
@@ -30,6 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84251DF91E56F72C00EE90ED /* TTSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingController.h; sourceTree = "<group>"; };
+		84251DFA1E56F72C00EE90ED /* TTSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSettingController.m; sourceTree = "<group>"; };
+		84251DFC1E56FD1B00EE90ED /* TTSettingTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingTitleCell.h; sourceTree = "<group>"; };
+		84251DFD1E56FD1B00EE90ED /* TTSettingTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSettingTitleCell.m; sourceTree = "<group>"; };
 		84457E4D1E555FF7000ED103 /* TTSlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSlideMenuController.h; sourceTree = "<group>"; };
 		84457E4E1E555FF7000ED103 /* TTSlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSlideMenuController.m; sourceTree = "<group>"; };
 		84457E501E558F11000ED103 /* TTMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTMenuCell.h; sourceTree = "<group>"; };
@@ -79,6 +85,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84251DF51E56F70900EE90ED /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				84251DF61E56F70900EE90ED /* Controller */,
+				84251DF71E56F70900EE90ED /* Model */,
+				84251DF81E56F70900EE90ED /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		84251DF61E56F70900EE90ED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				84251DF91E56F72C00EE90ED /* TTSettingController.h */,
+				84251DFA1E56F72C00EE90ED /* TTSettingController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		84251DF71E56F70900EE90ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84251DF81E56F70900EE90ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84251DFC1E56FD1B00EE90ED /* TTSettingTitleCell.h */,
+				84251DFD1E56FD1B00EE90ED /* TTSettingTitleCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		84FB75EC1E52A93900A51F41 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +160,7 @@
 		84FB760F1E52B01000A51F41 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				84251DF51E56F70900EE90ED /* Setting */,
 				84FB76101E52B01000A51F41 /* copy */,
 				84FB76141E52B01000A51F41 /* Detail */,
 				84FB76181E52B01000A51F41 /* List */,
@@ -406,9 +448,11 @@
 				84FB763C1E52B90900A51F41 /* TTListCell.m in Sources */,
 				84FB76391E52B77000A51F41 /* TTListController.m in Sources */,
 				84FB763F1E52BC2B00A51F41 /* UILabel+LLFont.m in Sources */,
+				84251DFB1E56F72C00EE90ED /* TTSettingController.m in Sources */,
 				84FB76361E52B58800A51F41 /* UIFont+SuitFont.m in Sources */,
 				84457E4F1E555FF7000ED103 /* TTSlideMenuController.m in Sources */,
 				84FB76331E52B4E300A51F41 /* UIImage+color.m in Sources */,
+				84251DFE1E56FD1B00EE90ED /* TTSettingTitleCell.m in Sources */,
 				84FB75FA1E52A93900A51F41 /* main.m in Sources */,
 				84FB762D1E52B08200A51F41 /* TTNavigationController.m in Sources */,
 			);
