@@ -26,6 +26,7 @@ static NSString *ListCellId = @"ListCellId";
 @property (nonatomic, strong) TTNotFindView *notFoundView;
 
 @property (nonatomic, weak) UIButton *addNoteBtn;
+
 @end
 
 @implementation TTListController{
@@ -61,6 +62,7 @@ static NSString *ListCellId = @"ListCellId";
     [tableView registerClass:[TTListCell class] forCellReuseIdentifier:ListCellId];
     [self.view addSubview:tableView];
     tableView.rowHeight = 101;
+    self.tableView = tableView;
     
     //添加新笔记按钮
     UIButton *btn = [UIButton new];
@@ -92,6 +94,7 @@ static NSString *ListCellId = @"ListCellId";
     leftbg.clipsToBounds = YES;
     UIButton *leftBtn = [UIButton new];
     [leftBtn setImage:[UIImage imageNamed:@"nav_menu"] forState:UIControlStateNormal];
+    [leftBtn addTarget:self action:@selector(showMenuClick) forControlEvents:UIControlEventTouchUpInside];
     leftBtn.frame = CGRectMake(0, 0, 40, 40);
     [leftbg addSubview:leftBtn];
     leftBtn.center = leftbg.center;
@@ -117,6 +120,12 @@ static NSString *ListCellId = @"ListCellId";
     NSLog(@"%s", __func__);
 }
 
+- (void)showMenuClick{
+    if (self.showMenuBlock) {
+        self.showMenuBlock();
+    }
+}
+
 - (void)navSearchAnimationStart{
     self.isSearchMode = !self.isSearchMode;
     //动画
@@ -128,7 +137,7 @@ static NSString *ListCellId = @"ListCellId";
         [[UIApplication sharedApplication].keyWindow addSubview:self.ListSearchBar];
         [self.ListSearchBar becomeFirstResponder];
     }
-    [UIView animateWithDuration:.25 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         _titleLabel.y += 45 * Screen_HScale * k;
         _leftNavBtn.x -= 45 * Screen_WScale * k;
         _rightNavBtn.x += 45 * Screen_WScale * k;

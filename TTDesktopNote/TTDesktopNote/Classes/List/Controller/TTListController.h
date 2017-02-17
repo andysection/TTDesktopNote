@@ -10,4 +10,7 @@
 
 @interface TTListController : UIViewController
 
+@property (nonatomic, weak) UITableView *tableView;
+
+@property (nonatomic, copy)  void (^showMenuBlock)();
 @end
