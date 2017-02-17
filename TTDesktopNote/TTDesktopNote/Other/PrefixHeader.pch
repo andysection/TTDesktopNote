@@ -32,6 +32,8 @@
 #define MenuCellColor_sel HexRGBAlpha(0x414747, 1)
 #define MenuTitleColor_nor HexRGBAlpha(0xcfcfcf, 1)
 #define MenuTitleColor_sel HexRGBAlpha(0xffffff, 1)
+
+#define SettingTitleColor HexRGBAlpha(0x545454, 1)
 //屏幕大小
 #define TTScreenSize [UIScreen mainScreen].bounds.size
 #define Iphone6_Width 375.f

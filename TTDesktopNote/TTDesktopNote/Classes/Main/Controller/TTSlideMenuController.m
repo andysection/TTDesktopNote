@@ -11,6 +11,7 @@
 #import "TTListController.h"
 #import "TTListCell.h"
 #import "TTNavigationController.h"
+#import "TTSettingController.h"
 
 #define menuViewOffset (100*Screen_WScale)
 #define slideBarWidth (240 * Screen_WScale)
@@ -79,6 +80,10 @@ static NSString *MenuCellId = @"MenuCellId";
 
 - (void)settingBtnClick{
     NSLog(@"%s", __func__);
+    TTSettingController *vc = [[TTSettingController alloc] init];
+    vc.title = @"设置";
+    TTNavigationController *nav = [[TTNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 /**
  *设置容器视图

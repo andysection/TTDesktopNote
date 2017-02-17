@@ -7,7 +7,9 @@
 //
 
 #import "TTSettingController.h"
+#import "TTSettingTitleCell.h"
 
+static NSString *SettingTitleCellId = @"SettingTitleCellId";
 @interface TTSettingController ()<UITableViewDelegate, UITableViewDataSource>
 
 @end
@@ -17,15 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    [self setupUI];
 }
 
 - (void)setupUI{
-    UITableView *tableView =[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.view.backgroundColor = BackgroundColor;
+    UITableView *tableView =[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.frame = [UIScreen mainScreen].bounds;
+    tableView.frame = CGRectMake(0, 0, TTScreenSize.width, TTScreenSize.height);
     [self.view addSubview:tableView];
+    [tableView registerClass:[TTSettingTitleCell class] forCellReuseIdentifier:SettingTitleCellId];
 }
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
@@ -35,5 +39,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TTSettingTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:SettingTitleCellId forIndexPath:indexPath];
+    return cell;
 }
 @end
