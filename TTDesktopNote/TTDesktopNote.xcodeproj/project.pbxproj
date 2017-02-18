@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840952391E5830DB00B6A883 /* TTNoteEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840952381E5830DB00B6A883 /* TTNoteEditController.m */; };
+		8409523C1E5850BB00B6A883 /* TTNoteInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409523B1E5850BB00B6A883 /* TTNoteInfoView.m */; };
 		84251DFB1E56F72C00EE90ED /* TTSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84251DFA1E56F72C00EE90ED /* TTSettingController.m */; };
 		84251DFE1E56FD1B00EE90ED /* TTSettingTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84251DFD1E56FD1B00EE90ED /* TTSettingTitleCell.m */; };
 		84457E4F1E555FF7000ED103 /* TTSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84457E4E1E555FF7000ED103 /* TTSlideMenuController.m */; };
@@ -32,6 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		840952371E5830DB00B6A883 /* TTNoteEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNoteEditController.h; sourceTree = "<group>"; };
+		840952381E5830DB00B6A883 /* TTNoteEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNoteEditController.m; sourceTree = "<group>"; };
+		8409523A1E5850BB00B6A883 /* TTNoteInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNoteInfoView.h; sourceTree = "<group>"; };
+		8409523B1E5850BB00B6A883 /* TTNoteInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNoteInfoView.m; sourceTree = "<group>"; };
 		84251DF91E56F72C00EE90ED /* TTSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingController.h; sourceTree = "<group>"; };
 		84251DFA1E56F72C00EE90ED /* TTSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSettingController.m; sourceTree = "<group>"; };
 		84251DFC1E56FD1B00EE90ED /* TTSettingTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingTitleCell.h; sourceTree = "<group>"; };
@@ -85,6 +91,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840952331E58309C00B6A883 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				840952341E58309C00B6A883 /* Controller */,
+				840952351E58309C00B6A883 /* Model */,
+				840952361E58309C00B6A883 /* View */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		840952341E58309C00B6A883 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				840952371E5830DB00B6A883 /* TTNoteEditController.h */,
+				840952381E5830DB00B6A883 /* TTNoteEditController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		840952351E58309C00B6A883 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		840952361E58309C00B6A883 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8409523A1E5850BB00B6A883 /* TTNoteInfoView.h */,
+				8409523B1E5850BB00B6A883 /* TTNoteInfoView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		84251DF51E56F70900EE90ED /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +201,7 @@
 		84FB760F1E52B01000A51F41 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				840952331E58309C00B6A883 /* Edit */,
 				84251DF51E56F70900EE90ED /* Setting */,
 				84FB76101E52B01000A51F41 /* copy */,
 				84FB76141E52B01000A51F41 /* Detail */,
@@ -449,6 +491,8 @@
 				84FB76391E52B77000A51F41 /* TTListController.m in Sources */,
 				84FB763F1E52BC2B00A51F41 /* UILabel+LLFont.m in Sources */,
 				84251DFB1E56F72C00EE90ED /* TTSettingController.m in Sources */,
+				8409523C1E5850BB00B6A883 /* TTNoteInfoView.m in Sources */,
+				840952391E5830DB00B6A883 /* TTNoteEditController.m in Sources */,
 				84FB76361E52B58800A51F41 /* UIFont+SuitFont.m in Sources */,
 				84457E4F1E555FF7000ED103 /* TTSlideMenuController.m in Sources */,
 				84FB76331E52B4E300A51F41 /* UIImage+color.m in Sources */,

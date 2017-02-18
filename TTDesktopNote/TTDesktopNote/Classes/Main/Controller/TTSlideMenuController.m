@@ -48,6 +48,7 @@ static NSString *MenuCellId = @"MenuCellId";
 }
 
 - (void)setupUI{
+    
     self.view.backgroundColor = MenuBackgroundColor;
     UIView *menuView = [[UIView alloc] initWithFrame:CGRectMake(-menuViewOffset, 0, TTScreenSize.width, TTScreenSize.height)];
     [self.view addSubview:menuView];
@@ -73,6 +74,7 @@ static NSString *MenuCellId = @"MenuCellId";
     UIButton *settingBtn = [[UIButton alloc] init];
     [settingBtn addTarget:self action:@selector(settingBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [settingBtn setBackgroundImage:[UIImage imageNamed:@"btn_setting_bg"] forState:UIControlStateNormal];
+    [settingBtn setBackgroundImage:[UIImage imageNamed:@"btn_ad_bg"] forState:UIControlStateHighlighted];
     [settingBtn setImage:[UIImage imageNamed:@"btn_setting"] forState:UIControlStateNormal];
     settingBtn.frame = CGRectMake(160 * Screen_WScale, 594 * Screen_HScale, 62 * Screen_WScale, 62 * Screen_WScale);
     [self.menuView addSubview:settingBtn];
@@ -85,6 +87,7 @@ static NSString *MenuCellId = @"MenuCellId";
     TTNavigationController *nav = [[TTNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
 }
+
 /**
  *设置容器视图
  */

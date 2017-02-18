@@ -10,6 +10,7 @@
 #import "TTListCell.h"
 #import "TTNoteModel.h"
 #import "TTNotFindView.h"
+#import "TTNoteEditController.h"
 
 static NSString *ListCellId = @"ListCellId";
 
@@ -66,7 +67,7 @@ static NSString *ListCellId = @"ListCellId";
     
     //添加新笔记按钮
     UIButton *btn = [UIButton new];
-    [btn setBackgroundImage:[UIImage imageNamed:@"btn_background"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"btn_ad_bg"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"btn_add"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(addNote) forControlEvents:UIControlEventTouchUpInside];
     [btn sizeToFit];
@@ -118,6 +119,8 @@ static NSString *ListCellId = @"ListCellId";
 
 - (void)addNote{
     NSLog(@"%s", __func__);
+    TTNoteEditController *vc =[[TTNoteEditController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showMenuClick{
