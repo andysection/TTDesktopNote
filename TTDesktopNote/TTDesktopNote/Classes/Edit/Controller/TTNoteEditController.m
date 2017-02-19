@@ -7,12 +7,13 @@
 //
 
 #import "TTNoteEditController.h"
+#import "TTNoteInfoView.h"
 
 @interface TTNoteEditController ()
 
 @property (nonatomic, strong) UIView *maskView;
 
-@property (nonatomic, strong) UIView *infoView;
+@property (nonatomic, strong) TTNoteInfoView *infoView;
 
 @end
 
@@ -70,10 +71,10 @@
     return _maskView;
 }
 
-- (UIView *)infoView{
+- (TTNoteInfoView *)infoView{
     if (!_infoView) {
-        _infoView = [[UIView alloc] initWithFrame:CGRectMake(TTScreenSize.width + 5 *Screen_WScale, 0, 275 *Screen_WScale, TTScreenSize.height)];
-        _infoView.backgroundColor = TitleColor;
+        _infoView = [[TTNoteInfoView alloc] initWithFrame:CGRectMake(TTScreenSize.width + 5 *Screen_WScale, 0, 275 *Screen_WScale, TTScreenSize.height)];
+//        _infoView.backgroundColor = TitleColor;
     }
     return _infoView;
 }

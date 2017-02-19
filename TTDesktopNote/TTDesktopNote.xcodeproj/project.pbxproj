@@ -11,12 +11,16 @@
 		8409523C1E5850BB00B6A883 /* TTNoteInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8409523B1E5850BB00B6A883 /* TTNoteInfoView.m */; };
 		84251DFB1E56F72C00EE90ED /* TTSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84251DFA1E56F72C00EE90ED /* TTSettingController.m */; };
 		84251DFE1E56FD1B00EE90ED /* TTSettingTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84251DFD1E56FD1B00EE90ED /* TTSettingTitleCell.m */; };
+		84394D581E59346E00EE6802 /* WASTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84394D571E59346E00EE6802 /* WASTableView.m */; };
+		84394D5A1E594CC800EE6802 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84394D591E594CC800EE6802 /* Assets.xcassets */; };
+		84394D5D1E59552400EE6802 /* TTInfoEditDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84394D5C1E59552400EE6802 /* TTInfoEditDataCell.m */; };
+		84394D601E59553D00EE6802 /* TTInfoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84394D5F1E59553D00EE6802 /* TTInfoDetailCell.m */; };
+		84394D631E59556000EE6802 /* TTInfoCreatDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84394D621E59556000EE6802 /* TTInfoCreatDataCell.m */; };
 		84457E4F1E555FF7000ED103 /* TTSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84457E4E1E555FF7000ED103 /* TTSlideMenuController.m */; };
 		84457E521E558F11000ED103 /* TTMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84457E511E558F11000ED103 /* TTMenuCell.m */; };
 		84457E541E559A53000ED103 /* Microsoft Yahei.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84457E531E559A53000ED103 /* Microsoft Yahei.ttf */; };
 		84CA59C71E543DE40013C824 /* TTNotFindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA59C61E543DE40013C824 /* TTNotFindView.m */; };
 		84FB75FA1E52A93900A51F41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB75F91E52A93900A51F41 /* main.m */; };
-		84FB76051E52A93900A51F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84FB76041E52A93900A51F41 /* Assets.xcassets */; };
 		84FB76081E52A93900A51F41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FB76061E52A93900A51F41 /* LaunchScreen.storyboard */; };
 		84FB76281E52B01000A51F41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB76221E52B01000A51F41 /* AppDelegate.m */; };
 		84FB762D1E52B08200A51F41 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB762C1E52B08200A51F41 /* TTNavigationController.m */; };
@@ -42,6 +46,15 @@
 		84251DFA1E56F72C00EE90ED /* TTSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSettingController.m; sourceTree = "<group>"; };
 		84251DFC1E56FD1B00EE90ED /* TTSettingTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSettingTitleCell.h; sourceTree = "<group>"; };
 		84251DFD1E56FD1B00EE90ED /* TTSettingTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSettingTitleCell.m; sourceTree = "<group>"; };
+		84394D561E59346E00EE6802 /* WASTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASTableView.h; sourceTree = "<group>"; };
+		84394D571E59346E00EE6802 /* WASTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASTableView.m; sourceTree = "<group>"; };
+		84394D591E594CC800EE6802 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
+		84394D5B1E59552400EE6802 /* TTInfoEditDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTInfoEditDataCell.h; sourceTree = "<group>"; };
+		84394D5C1E59552400EE6802 /* TTInfoEditDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTInfoEditDataCell.m; sourceTree = "<group>"; };
+		84394D5E1E59553D00EE6802 /* TTInfoDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTInfoDetailCell.h; sourceTree = "<group>"; };
+		84394D5F1E59553D00EE6802 /* TTInfoDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTInfoDetailCell.m; sourceTree = "<group>"; };
+		84394D611E59556000EE6802 /* TTInfoCreatDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTInfoCreatDataCell.h; sourceTree = "<group>"; };
+		84394D621E59556000EE6802 /* TTInfoCreatDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTInfoCreatDataCell.m; sourceTree = "<group>"; };
 		84457E4D1E555FF7000ED103 /* TTSlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSlideMenuController.h; sourceTree = "<group>"; };
 		84457E4E1E555FF7000ED103 /* TTSlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSlideMenuController.m; sourceTree = "<group>"; };
 		84457E501E558F11000ED103 /* TTMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTMenuCell.h; sourceTree = "<group>"; };
@@ -51,7 +64,6 @@
 		84CA59C61E543DE40013C824 /* TTNotFindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNotFindView.m; sourceTree = "<group>"; };
 		84FB75F51E52A93900A51F41 /* TTDesktopNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTDesktopNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FB75F91E52A93900A51F41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		84FB76041E52A93900A51F41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84FB76071E52A93900A51F41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84FB76211E52B01000A51F41 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		84FB76221E52B01000A51F41 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -122,6 +134,12 @@
 			children = (
 				8409523A1E5850BB00B6A883 /* TTNoteInfoView.h */,
 				8409523B1E5850BB00B6A883 /* TTNoteInfoView.m */,
+				84394D5B1E59552400EE6802 /* TTInfoEditDataCell.h */,
+				84394D5C1E59552400EE6802 /* TTInfoEditDataCell.m */,
+				84394D5E1E59553D00EE6802 /* TTInfoDetailCell.h */,
+				84394D5F1E59553D00EE6802 /* TTInfoDetailCell.m */,
+				84394D611E59556000EE6802 /* TTInfoCreatDataCell.h */,
+				84394D621E59556000EE6802 /* TTInfoCreatDataCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,7 +201,6 @@
 				84FB762F1E52B15500A51F41 /* Info.plist */,
 				84FB760F1E52B01000A51F41 /* Classes */,
 				84FB76201E52B01000A51F41 /* Other */,
-				84FB76041E52A93900A51F41 /* Assets.xcassets */,
 				84FB76061E52A93900A51F41 /* LaunchScreen.storyboard */,
 				84FB75F81E52A93900A51F41 /* Supporting Files */,
 			);
@@ -345,6 +362,8 @@
 			children = (
 				84457E501E558F11000ED103 /* TTMenuCell.h */,
 				84457E511E558F11000ED103 /* TTMenuCell.m */,
+				84394D561E59346E00EE6802 /* WASTableView.h */,
+				84394D571E59346E00EE6802 /* WASTableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -356,6 +375,7 @@
 				84FB76251E52B01000A51F41 /* Lib */,
 				84FB76231E52B01000A51F41 /* Category */,
 				84FB76211E52B01000A51F41 /* AppDelegate.h */,
+				84394D591E594CC800EE6802 /* Assets.xcassets */,
 				84FB76221E52B01000A51F41 /* AppDelegate.m */,
 				84FB762E1E52B11200A51F41 /* PrefixHeader.pch */,
 				84457E531E559A53000ED103 /* Microsoft Yahei.ttf */,
@@ -468,8 +488,8 @@
 				84FB764C1E52F67D00A51F41 /* Info.plist in Resources */,
 				84457E541E559A53000ED103 /* Microsoft Yahei.ttf in Resources */,
 				84FB76081E52A93900A51F41 /* LaunchScreen.storyboard in Resources */,
-				84FB76051E52A93900A51F41 /* Assets.xcassets in Resources */,
 				84FB76301E52B15500A51F41 /* Info.plist in Resources */,
+				84394D5A1E594CC800EE6802 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,11 +503,13 @@
 				84FB76421E52BF2F00A51F41 /* UIView+Extension.m in Sources */,
 				84FB764E1E52F67D00A51F41 /* MGSwipeTableCell.m in Sources */,
 				84FB76451E52E38000A51F41 /* TTNoteModel.m in Sources */,
+				84394D5D1E59552400EE6802 /* TTInfoEditDataCell.m in Sources */,
 				84FB764D1E52F67D00A51F41 /* MGSwipeButton.m in Sources */,
 				84457E521E558F11000ED103 /* TTMenuCell.m in Sources */,
 				84CA59C71E543DE40013C824 /* TTNotFindView.m in Sources */,
 				84FB76281E52B01000A51F41 /* AppDelegate.m in Sources */,
 				84FB763C1E52B90900A51F41 /* TTListCell.m in Sources */,
+				84394D631E59556000EE6802 /* TTInfoCreatDataCell.m in Sources */,
 				84FB76391E52B77000A51F41 /* TTListController.m in Sources */,
 				84FB763F1E52BC2B00A51F41 /* UILabel+LLFont.m in Sources */,
 				84251DFB1E56F72C00EE90ED /* TTSettingController.m in Sources */,
@@ -499,6 +521,8 @@
 				84251DFE1E56FD1B00EE90ED /* TTSettingTitleCell.m in Sources */,
 				84FB75FA1E52A93900A51F41 /* main.m in Sources */,
 				84FB762D1E52B08200A51F41 /* TTNavigationController.m in Sources */,
+				84394D601E59553D00EE6802 /* TTInfoDetailCell.m in Sources */,
+				84394D581E59346E00EE6802 /* WASTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
